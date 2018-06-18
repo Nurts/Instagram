@@ -21,13 +21,15 @@ class UsersController < ApplicationController
     end
 
     def edit
+        #@user = User.find(params[:id])
     end
 
     def update
+        
     end
 
     def destroy
-        User.find(params[:id]).destroy
+        User.find(params[:id]).destroy!
         redirect_to '/users'
     end
 
