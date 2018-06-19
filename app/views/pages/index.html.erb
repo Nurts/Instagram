@@ -1,4 +1,7 @@
 <% @title = "Homepage"%>
 
 <h1>Welcome to the Instagram</h1>
+<% if signed_in? %>
+    <h2><%= current_user.username%></h2>
+<% end %>
 

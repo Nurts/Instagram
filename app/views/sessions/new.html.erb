@@ -1,0 +1,8 @@
+<% if flash[:error] %>
+    <h2><%= flash[:error]%></h2>
+<% end %>
+<%= form_for(:session, url: login_path) do |f|%>
+    <%= f.text_field :login, placeholder: "Username or Email"%>
+    <%= f.password_field :password, placeholder: "Password"%>
+    <%= f.submit "Log in" %>
+<% end %>

@@ -10,9 +10,9 @@
     <%= f.label :Username%> <br>
     <%= f.text_field :username, placeholder: @user.username.nil? ? "Username" : @user.username %> <br>
     <%= f.label :Email%> <br>
-    <%= f.text_field :email, placeholder: @user.username.nil? ? "Email" : @user.email %> <br>
+    <%= f.text_field :email, placeholder: @user.email.nil? ? "Email" : @user.email %> <br>
     <%= f.label :Avatar %> <br>
     <%= f.file_field :avatar %> <br>
-    <%= f.password_field :password, placeholder: "Password" %><br>
-    <%= f.submit @user.username.nil? ? 'Sign in' : 'Save Changes'%>
+    <%= f.password_field :password, placeholder: @user.username.nil? ? 'Password' : 'New Password' %><br>
+    <%= f.submit @user.username.nil? ? 'Sign up' : 'Save Changes'%>
 <% end %>

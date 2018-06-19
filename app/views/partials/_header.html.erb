@@ -9,9 +9,14 @@
     <a href = "/contact">Contact</a>
     </li>
     <li>
-    <a href = "/users/new">Registration</a>
+    <a href = "/users">Users</a>
     </li>
     <li>
-    <a href = "/users">Users</a>
+        <% if signed_in? %>
+            <%= link_to "Log Out", logout_path, method: :delete%>
+        <% else %>
+            <%= link_to "Log In", login_path, method: :get%> | 
+            <a href = "/users/new">Sign Up</a>
+        <% end %>
     </li>
 </ul>
