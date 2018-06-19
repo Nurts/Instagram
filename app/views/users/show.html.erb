@@ -1,6 +1,7 @@
 <h1><%= @user.username%></h1>
 <h2><%= @user.email%></h2>
-<h4><%= link_to 'Destroy User', @user, method: :delete, data: {confirm: "Are you sure?"} %></h4>
+<h4><%= link_to 'Edit User', edit_user_path(@user) %></h4>
+<h4><%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"} %></h4>
 
 <% unless @user.avatar.attachment.nil? %>
     <%= image_tag @user.avatar%>

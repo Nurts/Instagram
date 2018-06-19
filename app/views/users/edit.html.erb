@@ -1,0 +1,7 @@
+<% unless @user.avatar.attachment.nil? %>
+        <%= image_tag @user.avatar%>
+<% else %>
+        <img src='https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'>
+<% end %> <br>
+
+<%= render "partials/form_for_user"%>

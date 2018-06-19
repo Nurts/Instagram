@@ -1,0 +1,18 @@
+<%= form_for @user do |f|%>
+
+    <% if @user.errors %>
+        <ul>
+            <% @user.errors.full_messages.each do |m|%>
+                <li><%= m %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    <%= f.label :Username%> <br>
+    <%= f.text_field :username, placeholder: @user.username.nil? ? "Username" : @user.username %> <br>
+    <%= f.label :Email%> <br>
+    <%= f.text_field :email, placeholder: @user.username.nil? ? "Email" : @user.email %> <br>
+    <%= f.label :Avatar %> <br>
+    <%= f.file_field :avatar %> <br>
+    <%= f.password_field :password, placeholder: "Password" %><br>
+    <%= f.submit @user.username.nil? ? 'Sign in' : 'Save Changes'%>
+<% end %>
