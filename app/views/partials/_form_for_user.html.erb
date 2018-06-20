@@ -13,6 +13,7 @@
     <%= f.text_field :email, placeholder: @user.email.nil? ? "Email" : @user.email %> <br>
     <%= f.label :Avatar %> <br>
     <%= f.file_field :avatar %> <br>
+    <%= f.label :Password%><br>
     <%= f.password_field :password, placeholder: @user.username.nil? ? 'Password' : 'New Password' %><br>
     <%= f.submit @user.username.nil? ? 'Sign up' : 'Save Changes'%>
 <% end %>
