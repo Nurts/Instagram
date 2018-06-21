@@ -1,0 +1,14 @@
+<% if signed_in? %>
+	<% if post.liked? %>
+		<%= link_to unlike_path, method: :delete do %>
+			<i class="far fa-heart">
+		<% end %>
+
+	<% else %>
+		<%= link_to likes_path, remote: true do %>
+			<i class="far fa-heart">
+		<% end %>
+	<% end %>
+<% else %>
+	<i class="far fa-heart"></i> <%= post.likes_count %>
+<% end %>

@@ -13,6 +13,9 @@
 
   <body>
     <%= render "partials/header"%>
-    <%= yield %>
+    <div class="container">
+      <%= render "partials/errors" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

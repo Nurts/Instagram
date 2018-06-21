@@ -1,13 +1,30 @@
-<h1><%= @user.username%></h1>
-<h2><%= @user.email%></h2>
-<h4>
-    <% if signed_in? && current_user.id == @user.id%>
-        <%= link_to 'Edit User', edit_user_path(@user) %> <br>
-        <%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"} %>
-    <% end %>
-</h4>
-<% unless @user.avatar.attachment.nil? %>
-    <%= image_tag @user.avatar%>
-<% else %>
-    <img src='https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'>
-<% end %>
+<div class="row">
+	<div class="col-md-3">
+		<% unless @user.avatar.attachment.nil? %>
+			<%= image_tag @user.avatar, class: "img-fluid", height: 70 %>
+		<% else %>
+			<img src='https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg', class="img-fluid">
+		<% end %>
+		<h2><%= @user.username %></h2>
+		<h3><%= @user.email %></h3>
+        <p>
+        <% if signed_in? && current_user?(@user)%>
+            <%= "User is not Activated, yet" if !@user.activated%><br>
+            <%= link_to 'Edit User', edit_user_path(@user) %> <br>
+            <%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"} %>
+			<%= form_for @post do |f|%>
+            <div class="form-group">
+                <%= f.text_area :body, class: "form-control"%>
+        	</div>
+            <div class="form-group">
+                <%= f.file_field :image%>
+            </div>
+            <%= f.submit%>
+        <% end %>
+        <% end %>
+        </p>
+	</div>
+	<div class="col-md-9">
+		<%= render @user.posts %>
+	</div>
+</div>

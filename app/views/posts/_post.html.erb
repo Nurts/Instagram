@@ -1,0 +1,8 @@
+<div class="well">
+    <% if post.image.attachment%>
+    <%= image_tag post.image , class: "img-fluid img-thumbnail"%>
+    <% end%>
+    <p><%= post.body %> </p>
+    
+    <%=link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"} if current_user?(post.user)%>
+</div>

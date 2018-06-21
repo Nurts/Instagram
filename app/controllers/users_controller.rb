@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @post = Post.new if signed_in?
     end
 
     def new
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
         redirect_to root_path if signed_in?
         @user = User.new(user_params)
         if @user.save
+            UserMailer.account_activation(@user).deliver_now
             sign_in(@user)
             redirect_to @user
         else
