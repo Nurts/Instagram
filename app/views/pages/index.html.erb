@@ -4,6 +4,8 @@
         <div class="col-md-3">
             <% if current_user.avatar.attachment%>
                 <%= image_tag current_user.avatar, height: 50%>
+            <% else %>
+                <img src='https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg', class = "img-fluid">
             <% end %>
             <h3><%=link_to current_user.username, user_path(current_user)%></h3>
             <%= form_for @post do |f|%>
