@@ -23,6 +23,7 @@ class UsersController < ApplicationController
             UserMailer.account_activation(@user).deliver_now
             sign_in(@user)
             redirect_to @user
+            flash[:success] = "Signed up successfully"
         else
             render :new
         end
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
 
     def update
         if @user.update_attributes(user_params)
-
+            flash[:success] = "Changes were successfully saved"
             redirect_to @user
         else
             render :edit
@@ -44,6 +45,7 @@ class UsersController < ApplicationController
     def destroy
         sign_out
         @user.destroy
+        flash[:success] = "User was Deleted Successfully"
         redirect_to root_path
     end
 
@@ -55,10 +57,14 @@ class UsersController < ApplicationController
 
     def correct_user
         unless signed_in?
+            flash[:danger] = "Please sign in first"
             redirect_to login_url
         else
             @user = User.find(params[:id])
-            redirect_to user_path unless current_user?(@user)
+            unless current_user?(@user)
+                flash[:danger] = "You are not allowed to edit others"
+                redirect_to user_path 
+            end
         end
     end
 

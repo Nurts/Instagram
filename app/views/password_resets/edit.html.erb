@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="col-md-6 offset-md-3">
+		<h1>Reset Password</h1>
+		<%= form_for(@user, url: password_reset_path(params[:id])) do |f|%>
+			<% if @user.errors.any? %>
+				<div class="alert alert-danger"> 
+					<ul>
+						<% @user.errors.full_messages.each do |m|%>
+							<li><%= m %></li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
+            <%= hidden_field_tag :email, @user.email%>
+		    <div class="form-group">
+				<%= f.password_field :password, placeholder: 'New Password', class: "form-control" %>
+			</div>
+			<%= f.submit "Update Password", class: "btn btn-primary" %>
+		<% end %>
+	</div>	
+</div>

@@ -9,6 +9,7 @@
 				<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
 			</div>
 			<%= f.submit "Log In", class: "btn btn-primary" %>
+			<%= link_to "Forgot Password ?", new_password_reset_path, class: "offset-md-7"%>
 		<% end %>
 	</div>	
 </div>
