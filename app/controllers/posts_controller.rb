@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     end
 
     def check
-        unless current_user?(Post.find(params[:id]).user)
+        unless current_user?(Post.find(params[:id]).user.id)
             flash[:danger] = "Not your post!"
             redirect_to root_path
         end

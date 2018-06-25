@@ -15,8 +15,8 @@ module SessionsHelper
     end
 
 
-    def current_user?(user)
-        @current_user.id == user.id if current_user
+    def current_user?(user_id)
+        current_user.id == user_id if current_user
     end
 
     def current_user

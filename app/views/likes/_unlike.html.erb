@@ -1,0 +1,7 @@
+<%= form_for(:like, url: like_path, remote: true) do |f| %>
+    <%= f.hidden_field :post_id, value: post_id %>
+    <button type="submit">
+        <i class="fa fa-heart-o"></i>
+    </button>
+    <%= count%>
+<% end %>

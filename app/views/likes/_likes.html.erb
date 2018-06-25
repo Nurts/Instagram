@@ -1,14 +1,8 @@
-<% if signed_in? %>
-	<% if post.liked? %>
-		<%= link_to unlike_path, method: :delete do %>
-			<i class="far fa-heart">
-		<% end %>
-
+<div id="like-<%= post.id %>">
+	<% @count = post.likes.count%>
+	<% if post.liked?(current_user.id) %>
+		<%= render "likes/like", post_id: post.id, count: @count %>
 	<% else %>
-		<%= link_to likes_path, remote: true do %>
-			<i class="far fa-heart">
-		<% end %>
+		<%= render "likes/unlike", post_id: post.id, count: @count %>
 	<% end %>
-<% else %>
-	<i class="far fa-heart"></i> <%= post.likes_count %>
-<% end %>
+</div>

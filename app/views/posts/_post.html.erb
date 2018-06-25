@@ -1,8 +1,9 @@
 <div class="well">
     <% if post.image.attachment%>
-    <%= image_tag post.image , class: "img-fluid img-thumbnail"%>
+    <%= image_tag post.image , class: "img-fluid img-thumbnail", size: 700%>
     <% end%>
     <p><%= post.body %> </p>
+    <%=link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"} if current_user?(post.user.id)%>
+    <%= render "likes/likes", post: post%>
     
-    <%=link_to "Delete", post, method: :delete, data: {confirm: "Are you sure?"} if current_user?(post.user)%>
 </div>

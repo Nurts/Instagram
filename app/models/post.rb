@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+    attr_accessor :likes_count
     validates :body, length: {maximum: 255}
     validates :user_id, presence: true
     belongs_to :user
@@ -8,9 +9,8 @@ class Post < ApplicationRecord
         order "created_at DESC"
     }
 
-    def liked?
-        if signed_in?
-            likes.where(user_id: current_user.id).count > 0
-        end
+    def liked?(user_id)
+        likes.where(user_id: user_id).count > 0
     end
+
 end
