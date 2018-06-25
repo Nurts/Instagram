@@ -8,7 +8,7 @@
 		<h2><%= @user.username %></h2>
 		<h3><%= @user.email %></h3>
         <p>
-        <% if signed_in? && current_user?(@user)%>
+        <% if signed_in? && current_user?(@user.id)%>
             <%= "User is not Activated, yet" if !@user.activated%><br>
             <%= link_to 'Edit User', edit_user_path(@user) %> <br>
             <%= link_to 'Delete User', @user, method: :delete, data: {confirm: "Are you sure?"} %>
