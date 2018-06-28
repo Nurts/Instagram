@@ -8,6 +8,10 @@ class User < ApplicationRecord
     has_one_attached :avatar
     has_many :posts
     has_many :likes
+    has_many :relationships, foreign_key: :followed_id, dependent: :destroy
+    has_many :followers, through: :relationships
+    has_many :reverse_relationships, foreign_key: :follower_id, class_name: "Relationship"
+    has_many :following, through: :reverse_relationships, source: :followed
 
     validates_presence_of :email, :username
     validates_uniqueness_of :email, :username
@@ -26,7 +30,7 @@ class User < ApplicationRecord
             SecureRandom.urlsafe_base64
         end
     end
-
+    
     def remember
         @remember_token = User.new_token
         update_attribute(:remember_digest, User.digest(remember_token))
@@ -54,6 +58,23 @@ class User < ApplicationRecord
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
     end
+
+    def follow(user)
+        reverse_relationships.create(followed_id: user.id) unless following?(user)
+    end
+
+    def unfollow(user)
+        reverse_relationships.where(followed_id: user.id).first.destroy if following?(user)
+    end
+
+    def following?(user)
+        reverse_relationships.where(followed_id: user.id).count > 0
+    end
+
+    def feed
+        Post.where(user_id: following_ids)
+    end
+
 
     private
 

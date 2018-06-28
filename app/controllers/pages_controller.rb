@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     if signed_in?
-      @feed = current_user.posts
+      @feed = current_user.feed
       @post = Post.new
     end
   end

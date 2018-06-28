@@ -7,6 +7,7 @@
 		<% end %>
 		<h2><%= @user.username %></h2>
 		<h3><%= @user.email %></h3>
+        <%= render "relationships/follow_form", user: @user%>
         <p>
         <% if signed_in? && current_user?(@user.id)%>
             <%= "User is not Activated, yet" if !@user.activated%><br>

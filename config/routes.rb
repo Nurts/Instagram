@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :show, :create]
+    end
+  end
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'password_resets/new'
   get 'password_resets/edit'
   get '/contact', to: "pages#contact"
@@ -15,4 +22,6 @@ Rails.application.routes.draw do
   post "/like", to: "likes#create"
   delete "/unlike", to: "likes#destroy"
   resources :password_resets, only: [:new, :create, :edit, :update]
+  post "/follow", to: "relationships#create"
+  delete "/unfollow", to: "relationships#destroy"
 end

@@ -1,0 +1,6 @@
+<%= form_for(:follow, url: follow_path, remote: true) do |f|%>
+    <%= f.hidden_field :followed_id, value: user.id %>
+    <button class="btn btn-primary">
+        Follow
+    </button>
+<% end %>
